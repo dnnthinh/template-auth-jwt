@@ -21,7 +21,7 @@ const verifyAdmin = (req, res, next) => {
         User.findById({
             _id: decoded._id
         }, (err, user) => {
-            if (err) {
+            if (err || !user) {
                 return res.status(401).send("Error when verifying your role!");
             }
             if (user.isAdmin) {
