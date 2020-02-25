@@ -1,19 +1,18 @@
 const express = require('express');
 require('dotenv').config();
 
-const User = require('../models/user');
 const {
     RegistrationPolicy
-} = require('../policies/RegistrationPolicy');
+} = require('../policies/registrationPolicy');
 const {
     LoginPolicy
-} = require('../policies/LoginPolicy');
+} = require('../policies/loginPolicy');
 const {
     RegistrationController
-} = require('../controllers/RegistrationController');
+} = require('../controllers/registrationController');
 const {
     LoginController
-} = require('../controllers/LoginController');
+} = require('../controllers/loginController');
 
 
 const router = express.Router();
