@@ -2,8 +2,8 @@ const express = require('express');
 const {
     verifyToken,
     verifyAdmin
-} = require('./verifyRole');
-const User = require('../model/user');
+} = require('../policies/verifyRole');
+const User = require('../models/user');
 
 const router = express.Router();
 

@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
-const User = require('../model/user');
+const User = require('../models/user');
 
-const verifyToken = (req, res, next) => {
+module.exports.verifyToken = (req, res, next) => {
     const token = req.headers['auth-token'];
     if (!token) return res.status(401).send("Access denied!");
     try {
@@ -13,7 +13,7 @@ const verifyToken = (req, res, next) => {
     }
 };
 
-const verifyAdmin = (req, res, next) => {
+module.exports.verifyAdmin = (req, res, next) => {
     const token = req.headers['auth-token'];
     if (!token) return res.status(401).send("Access denied!");
     try {
@@ -32,9 +32,4 @@ const verifyAdmin = (req, res, next) => {
     } catch (error) {
         res.status(401).send("Invalid token!");
     }
-};
-
-module.exports = {
-    verifyToken,
-    verifyAdmin
 };
