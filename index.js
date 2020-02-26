@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 
 // connect to DB
-require('./config/database')
+require('./config/db-pg')
 
 // routes
 app.use('/api/user', authRouter);
