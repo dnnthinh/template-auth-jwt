@@ -5,7 +5,7 @@ module.exports.LoginController = (req, res) => {
     try {
         const token = jwt.sign({
             _id: req.user._id
-        }, process.env.TOKEN_SECRET);
+        }, "somethingsecret");
         res.header("auth-token", token).send({
             msg: "Logged in successfully!",
             token: token
