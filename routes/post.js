@@ -19,11 +19,8 @@ router.get("/", verifyToken, async (req, res) => {
 
 });
 
-router.get("/pending", verifyAdmin, async (req, res) => {
+router.get("/pending", verifyAdmin, (req, res) => {
     try {
-        const user = await User.findById({
-            _id: req.user._id
-        });
         res.send(`post is pending`);
     } catch (error) {
         res.status(400).send("Not found user!")
