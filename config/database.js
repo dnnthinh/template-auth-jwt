@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const db = mongoose.connect("mongodb+srv://udck:udck@trainingcluster-fn2to.mongodb.net/training?retryWrites=true&w=majority", {
+const db = mongoose.connect("mongodb+srv://udck:udck@trainingcluster-fn2to.mongodb.net/training", {
         useNewUrlParser: true,
         useUnifiedTopology: true
     }).then(db => {
