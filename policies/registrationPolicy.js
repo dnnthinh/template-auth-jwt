@@ -17,7 +17,7 @@ module.exports.RegistrationPolicy = async (req, res, next) => {
     } = registrationValidation(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
-    const user = null;
+    let user = null;
     try {
         // check if email is existed
         user = await User.findOne({
