@@ -8,6 +8,12 @@ module.exports.LoginController = (req, res) => {
         }, process.env.TOKEN_SECRET);
         res.header("auth-token", token).send({
             msg: "Logged in successfully!",
+            user: {
+                "_id": req.user._id,
+                "firstName": req.user.firstName,
+                "lastName": req.user.lastName,
+                "email": req.user.email
+            },
             token: token
         });
     } catch (error) {

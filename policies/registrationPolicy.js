@@ -3,7 +3,8 @@ const bcrypt = require('bcrypt');
 const User = require('../models/user');
 
 const registrationValidation = (data) => Joi.object({
-    name: Joi.string().min(6).max(40).required(),
+    firstName: Joi.string().min(6).max(40).required(),
+    lastName: Joi.string().min(6).max(40).required(),
     email: Joi.string().required().email(),
     password: Joi.string().min(6).required(),
     isAdmin: Joi.boolean()
