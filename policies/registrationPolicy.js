@@ -24,8 +24,8 @@ module.exports.RegistrationPolicy = async (req, res, next) => {
         if (user) return res.status(400).send("Email is already existed!");
 
         // encrypt password by hashing it
-        const salt = await bcrypt.genSalt(8);
-        const hashPassword = await bcrypt.hash(req.body.password, salt);
+        const salt = bcrypt.genSaltSync(8);
+        const hashPassword = bcrypt.hashSync(req.body.password, salt);
 
         req.body.password = hashPassword;
         next();
