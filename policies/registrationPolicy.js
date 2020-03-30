@@ -17,13 +17,14 @@ module.exports.RegistrationPolicy = async (req, res, next) => {
     } = registrationValidation(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
+    const user = null;
     try {
         // check if email is existed
-        const user = await User.findOne({
+        user = await User.findOne({
             email: req.body.email
         });
-    } catch (error) {
-        next(error);
+    } catch (err) {
+        next(err);
     }
     if (user) return res.status(400).send("Email is already existed!");
 
