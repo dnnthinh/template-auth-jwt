@@ -10,26 +10,28 @@ const registrationValidation = (data) => Joi.object({
 }).validate(data);
 
 module.exports.RegistrationPolicy = async (req, res, next) => {
-    try {
-        // validate the data input
-        const {
-            error
-        } = registrationValidation(req.body);
-        if (error) return res.status(400).send(error.details[0].message);
 
+    // validate the data input
+    const {
+        error
+    } = registrationValidation(req.body);
+    if (error) return res.status(400).send(error.details[0].message);
+
+    try {
         // check if email is existed
         const user = await User.findOne({
             email: req.body.email
         });
-        if (user) return res.status(400).send("Email is already existed!");
-
-        // encrypt password by hashing it
-        const salt = bcrypt.genSaltSync(8);
-        const hashPassword = bcrypt.hashSync(req.body.password, salt);
-
-        req.body.password = hashPassword;
-        next();
     } catch (error) {
         next(error);
     }
+    if (user) return res.status(400).send("Email is already existed!");
+
+    // encrypt password by hashing it
+    const salt = bcrypt.genSaltSync(8);
+    const hashPassword = bcrypt.hashSync(req.body.password, salt);
+
+    req.body.password = hashPassword;
+    next();
+
 }
